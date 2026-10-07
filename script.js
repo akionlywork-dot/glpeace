@@ -37,3 +37,13 @@ if (moreBtn) {
     updateNews();
   });
 }
+
+const opening = document.querySelector(".opening");
+
+if (opening) {
+  if (sessionStorage.getItem("opened")) {
+    opening.style.display = "none";
+  } else {
+    sessionStorage.setItem("opened", "yes");
+  }
+}
