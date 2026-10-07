@@ -389,6 +389,31 @@ footer p {
   color: var(--main-dark);
 }
 
+.syakun-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 20px auto;
+}
+
+.syakun-title {
+  margin: 0;
+  padding: 24px 0 16px;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--main-dark);
+  border-bottom: 3px solid var(--main);
+}
+
+.syakun-title::before,
+.syakun-title::after {
+  content: "★";
+  color: var(--main);
+  font-size: 0.7em;
+  margin: 0 12px;
+}
+
 /* ===== スマホ用（必ず一番下） ===== */
 @media (max-width: 600px) {
   header {
@@ -404,3 +429,4 @@ footer p {
     gap: 4px;
   }
 }
+
