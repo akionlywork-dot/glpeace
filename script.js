@@ -1,3 +1,4 @@
+// ===== アコーディオン =====
 const titles = document.querySelectorAll(".acc-title");
 
 titles.forEach(function (title) {
@@ -6,23 +7,33 @@ titles.forEach(function (title) {
   });
 });
 
-const items = document.querySelectorAll("#news-list li");
+// ===== ニュース（もっと見る / 閉じる） =====
+const newsItems = document.querySelectorAll("#news-list li");
 const moreBtn = document.getElementById("more-btn");
 const SHOW_COUNT = 3;
+let isOpen = false;
 
-items.forEach(function (item, index) {
-  if (index >= SHOW_COUNT) {
-    item.classList.add("hidden");
-  }
-});
+function updateNews() {
+  newsItems.forEach(function (item, index) {
+    if (!isOpen && index >= SHOW_COUNT) {
+      item.classList.add("hidden");
+    } else {
+      item.classList.remove("hidden");
+    }
+  });
 
-if (items.length <= SHOW_COUNT) {
-  moreBtn.style.display = "none";
+  moreBtn.textContent = isOpen ? "閉じる" : "もっと見る";
 }
 
-moreBtn.addEventListener("click", function () {
-  items.forEach(function (item) {
-    item.classList.remove("hidden");
+if (moreBtn) {
+  if (newsItems.length <= SHOW_COUNT) {
+    moreBtn.style.display = "none";
+  }
+
+  updateNews();
+
+  moreBtn.addEventListener("click", function () {
+    isOpen = !isOpen;
+    updateNews();
   });
-  moreBtn.style.display = "none";
-});
+}
