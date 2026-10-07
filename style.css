@@ -418,7 +418,7 @@ footer p {
   position: fixed;
   inset: 0;
   z-index: 100;
-  animation: opening-hide 0s 10s forwards;
+  animation: opening-hide 0s 2.9s forwards;
 }
 
 .opening-half {
