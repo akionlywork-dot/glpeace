@@ -15,25 +15,28 @@
   </header>
 
   <div class="page-title">
-    <h2>お問い合わせ<br>※実際には送信されません</h2>
+    <h2>お問い合わせ</h2>
   </div>
 
   <main class="page">
     <section id="contact">
       <form id="contact-form">
         <label for="name">お名前</label>
-        <input id="name" name="name" type="text" autocomplete="name">
+        <input id="name" name="name" type="text" autocomplete="name" data-fs-field required>
+        <span data-fs-error="name"></span>
 
         <label for="email">メールアドレス</label>
-        <input id="email" name="email" type="email" autocomplete="email">
+        <input id="email" name="email" type="email" autocomplete="email" data-fs-field required>
+        <span data-fs-error="email"></span>
 
-        <label for="body">内容</label>
-        <textarea id="body" name="body" rows="5"></textarea>
+        <label for="message">内容</label>
+        <textarea id="message" name="message" rows="5" data-fs-field required></textarea>
+        <span data-fs-error="message"></span>
 
-        <p id="error" role="alert"></p>
-        <button type="submit">送信</button>
+        <p id="error" data-fs-error role="alert"></p>
+        <button type="submit" data-fs-submit-btn>送信</button>
       </form>
-      <p id="thanks" aria-live="polite"></p>
+      <p id="thanks" data-fs-success aria-live="polite">お問い合わせありがとうございます。</p>
     </section>
   </main>
 
@@ -42,5 +45,6 @@
   </footer>
 
   <script src="contact.js"></script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
