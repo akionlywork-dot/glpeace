@@ -56,9 +56,11 @@ button {
 
 /* ヘッダー・フッター */
 header {
+  position: relative;
+  z-index: 101;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   background-color: var(--main);
   padding: 16px 40px;
 }
@@ -73,6 +75,66 @@ nav a {
   margin-left: 10px;
   color: var(--white);
   text-decoration: none;
+}
+
+.site-menu {
+  position: relative;
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  list-style: none;
+}
+
+.menu-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.menu-icon {
+  display: grid;
+  gap: 4px;
+}
+
+.menu-icon span {
+  width: 22px;
+  height: 2px;
+  background-color: var(--white);
+}
+
+.site-menu[open] .menu-toggle,
+.menu-toggle:hover {
+  background-color: var(--main-dark);
+}
+
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 102;
+  display: grid;
+  width: 220px;
+  padding: 8px;
+  border-radius: var(--radius);
+  background-color: var(--main-dark);
+  box-shadow: 0 6px 18px var(--shadow);
+}
+
+.menu-panel a {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 4px;
+}
+
+.menu-panel a:hover {
+  background-color: var(--main);
 }
 
 .contact-link::before {

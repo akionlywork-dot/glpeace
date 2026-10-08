@@ -7,3 +7,13 @@ titles.forEach(function (title) {
   });
 });
 
+const opening = document.querySelector(".opening");
+
+if (opening) {
+  if (sessionStorage.getItem("openingShown")) {
+    opening.style.display = "none";
+  } else {
+    sessionStorage.setItem("openingShown", "true");
+  }
+}
+
