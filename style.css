@@ -56,13 +56,19 @@ button {
 
 /* ヘッダー・フッター */
 header {
-  position: relative;
-  z-index: 101;
+  position: sticky;            /* スクロールしても上に貼りつく */
+  top: 0;                      /* 画面の一番上で止まる */
+  z-index: 101;                /* 他の要素より手前（今まで通り） */
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--main);
   padding: 16px 40px;
+  transition: top 0.3s ease;   /* 上の位置が変わる時に0.3秒かけて動く */
+}
+
+header.is-hidden {
+  top: -100px;                 /* 画面の上に隠れる */
 }
 
 .logo {
@@ -114,17 +120,26 @@ nav a {
   background-color: var(--main-dark);
 }
 
-.menu-panel {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  z-index: 102;
-  display: grid;
-  width: 220px;
-  padding: 8px;
-  border-radius: var(--radius);
-  background-color: var(--main-dark);
-  box-shadow: 0 6px 18px var(--shadow);
+
+
+.menu-toggle {
+  position: relative;          /* パネルより手前に出す準備 */
+  z-index: 103;                /* MENUボタンがパネルに隠れないように */
+}
+
+.menu-panel a {
+  font-size: 18px;             /* 文字を少し大きく */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  /* リンクの間にうっすら線 */
+}
+
+@keyframes menu-slide {
+  from {
+    transform: translateX(100%);   /* 最初は画面の右外 */
+  }
+  to {
+    transform: translateX(0);      /* 定位置に滑り込む */
+  }
 }
 
 .menu-panel a {
@@ -627,6 +642,252 @@ footer p {
   }
 }
 
+body::before,
+body::after {
+  content: "";            /* 中身は空の飾り */
+  position: fixed;        /* 画面に固定 */
+  z-index: -1;            /* 文字の後ろに置く */
+  border-radius: 50%;     /* 丸くする */
+  pointer-events: none;   /* クリックの邪魔をしない */
+}
+
+body::before {
+  width: 420px;           /* 大きさ */
+  height: 420px;
+  top: -120px;            /* 画面の左上に半分はみ出す */
+  left: -120px;
+  background: rgba(74, 144, 226, 0.15);  /* 薄い青 */
+  animation: drift 12s ease-in-out infinite alternate;
+  /* 12秒かけて動く／行って戻るを繰り返す */
+}
+
+body::after {
+  width: 320px;
+  height: 320px;
+  bottom: -100px;         /* 右下 */
+  right: -80px;
+  background: rgba(44, 90, 160, 0.12);   /* 濃い青 */
+  animation: drift 15s ease-in-out infinite alternate-reverse;
+  /* 逆向きに動かして単調さを消す */
+}
+
+@keyframes drift {
+  to {
+    transform: translate(60px, 40px) scale(1.15);
+    /* 右下に60px・40px動いて、少し大きくなる */
+  }
+}
+
+.reveal {
+  opacity: 0;                        /* 最初は透明 */
+  transform: translateY(30px);       /* 30px下にずらしておく */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  /* 0.8秒かけて変化させる */
+}
+
+.reveal.is-visible {
+  opacity: 1;                        /* 見えるようにする */
+  transform: none;                   /* 元の位置に戻る */
+}
+
+.news-list li {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  /* 動きを0.3秒かけてなめらかにする */
+}
+
+.news-list li:hover {
+  transform: translateY(-4px);
+  /* 触ると4px上に浮く */
+  background-color: var(--white);
+  /* 背景を白くして浮いて見せる */
+}
+
+.hero {
+  position: relative;        /* ::before の基準にする */
+  overflow: hidden;          /* ズームではみ出た部分を隠す */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 260px;
+  background-color: #7fc4f0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;                  /* 親いっぱいに広げる */
+  background-image: url("images/hero.jpg");
+  background-size: cover;    /* 画像を全面に */
+  background-position: center;
+  animation: hero-zoom 12s ease-in-out infinite alternate;
+  /* 12秒かけて拡大→縮小を繰り返す */
+}
+
+.hero h1 {
+  position: relative;        /* 画像より手前に出す */
+}
+
+@keyframes hero-zoom {
+  to {
+    transform: scale(1.1);   /* 1.1倍まで拡大 */
+  }
+}
+
+.info,
+#news {
+  width: calc(100% - 32px);    /* 画面の左右に16pxずつ余白 */
+  max-width: 700px;            /* 広い画面では700pxまで */
+  margin: 24px auto;           /* 上下24px、左右は中央寄せ */
+  background-color: var(--white);   /* 白い板 */
+  border-radius: 8px;          /* 角を丸く */
+  box-shadow: 0 2px 8px var(--shadow);  /* うっすら影 */
+}
+
+#news {
+  padding-top: 24px;           /* 「News」の文字が板の上端にくっつかないように */
+}
+
+.news-list li:hover {
+  background-color: var(--bg-light);   /* 白い板の上でも見える薄い青に変更 */
+}
+
+.peace-hand.peace-hidden {
+  font-size: 14px;             /* 文字と同じ小ささ */
+  opacity: 0.15;               /* ほぼ透明にして隠す */
+  animation: none;             /* 隠れているときはゆらゆらしない */
+  transition: opacity 0.3s;    /* 現れ方をなめらかに */
+}
+
+.peace-hand.peace-hidden:hover {
+  opacity: 1;                  /* マウスを載せるとはっきり見える */
+}
+
+.peace-hand {
+  font-size: 48px;             /* 大きさ */
+  cursor: pointer;             /* 触ると指のカーソルに */
+  user-select: none;           /* 連打で文字選択されないように */
+  animation: peace-wave 2s ease-in-out infinite;
+  /* ゆらゆらは今まで通り */
+}
+
+.peace-hand.pop {
+  animation:
+    peace-pop 0.5s ease-out,
+    /* 生まれた時にポンッと出る */
+    peace-wave 2s ease-in-out 0.5s infinite;
+    /* 0.5秒待ってからゆらゆらを始める */
+}
+
+.peace-hand.scatter {
+  position: fixed;             /* 画面に固定して好きな場所に置く */
+  z-index: 50;                 /* 文字より手前（オープニングとヘッダーよりは後ろ） */
+}
+
+@keyframes peace-pop {
+  from {
+    opacity: 0;
+    transform: scale(0);       /* 大きさ0から */
+  }
+  70% {
+    transform: scale(1.4);     /* 一瞬大きくなりすぎて */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);       /* 元の大きさに落ち着く */
+  }
+}
+
+@keyframes peace-wave {
+  0%, 100% {
+    transform: rotate(-12deg);   /* 左に傾く */
+  }
+  50% {
+    transform: translateY(-10px) rotate(12deg);
+    /* 10px跳ねて、右に傾く */
+  }
+}
+
+.menu-icon span {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  /* 形の変化を0.3秒かけて動かす */
+}
+
+.site-menu[open] .menu-icon span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+  /* 上の線を真ん中まで下げて、45度傾ける */
+}
+
+.site-menu[open] .menu-icon span:nth-child(2) {
+  opacity: 0;
+  /* 真ん中の線は消す */
+}
+
+.site-menu[open] .menu-icon span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+  /* 下の線を真ん中まで上げて、逆に傾ける（✕になる） */
+}
+
+
+ .site-menu.is-open .menu-panel a {
+  animation: link-in 0.5s ease both;
+  /* 開いた時だけ、リンクがふわっと出る */
+}
+
+.site-menu.is-open .menu-panel a:nth-child(1) { animation-delay: 0.10s; }
+.site-menu.is-open .menu-panel a:nth-child(2) { animation-delay: 0.15s; }
+.site-menu.is-open .menu-panel a:nth-child(3) { animation-delay: 0.20s; }
+.site-menu.is-open .menu-panel a:nth-child(4) { animation-delay: 0.25s; }
+.site-menu.is-open .menu-panel a:nth-child(5) { animation-delay: 0.30s; }
+.site-menu.is-open .menu-panel a:nth-child(6) { animation-delay: 0.35s; }
+.site-menu.is-open .menu-panel a:nth-child(7) { animation-delay: 0.40s; }
+.site-menu.is-open .menu-panel a:nth-child(8) { animation-delay: 0.45s; }
+.site-menu.is-open .menu-panel a:nth-child(9) { animation-delay: 0.50s; }
+
+@keyframes link-in {
+  from {
+    opacity: 0;
+    transform: translateX(30px);   /* 右から */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.menu-panel {
+  position: fixed;             /* 画面に固定する */
+  top: 0;                      /* 画面の上端から */
+  right: 0;                    /* 右端にぴったり付ける */
+  z-index: 102;                /* ページの上に重ねる */
+  display: grid;               /* リンクを縦に並べる */
+  align-content: start;        /* 上から詰めて並べる */
+  width: 260px;                /* 基本の幅 */
+  max-width: 33.333vw;         /* どんな画面でも3分の1まで */
+  height: 100vh;               /* 高さは画面いっぱい */
+  padding: 80px 12px 16px;     /* 上はMENUボタンのぶん空ける */
+  background-color: var(--main-dark);
+  box-shadow: -6px 0 18px var(--shadow);  /* 左側にうっすら影 */
+  transform: translateX(100%); /* 普段は画面の右外に置く */
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  /* 位置が変わる時に0.4秒かけて動く */
+}
+
+.site-menu.is-open .menu-panel {
+  transform: translateX(0);    /* 開いた時は定位置に来る */
+}
+
+.site-menu.is-open .menu-panel {
+  transform: translateX(0);      /* 開いている時は定位置に来る */
+}
+
+html {
+  scroll-behavior: smooth;     /* 飛ぶ時にスルスルっと動く */
+}
+
+.acc-item {
+  scroll-margin-top: 90px;     /* 固定ヘッダーに隠れないよう90px手前で止める */
+}
+
 /* スマホ用（必ず一番下） */
 @media (max-width: 600px) {
   header {
@@ -644,5 +905,10 @@ footer p {
   .news-list li {
     flex-direction: column;
     gap: 4px;
+  }
+
+  .menu-panel a {
+    font-size: 13px;           /* 文字を小さくして収める */
+    padding: 10px 6px;
   }
 }
