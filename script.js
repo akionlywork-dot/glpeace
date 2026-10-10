@@ -186,3 +186,18 @@ counters.forEach(function (counter) {
   countObserver.observe(counter);
   // 集めた数字を1つずつ見張りに登録
 });
+
+const secretBtn = document.querySelector(".secret-btn");
+// 隠しボタンを取ってくる（officers.html にだけある）
+
+if (secretBtn) {
+  // ボタンがあるページだけ動かす
+  secretBtn.addEventListener("click", function () {
+    // 押された時に
+    document.querySelectorAll(".secret-officer").forEach(function (li) {
+      // 隠し役員を1人ずつ取り出して
+      li.classList.toggle("secret-shown");
+      // 表示の印を付ける（もう付いていれば外して、また隠す）
+    });
+  });
+}
