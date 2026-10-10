@@ -1,5 +1,6 @@
 const shareholders = [
   { name: "ひろあき", shares: 500 },
+  { name: "がんばりピース", shares: 400 },
   { name: "smilehappy", shares: 200 },
   { name: "拾ったお金", shares: 198 },
   { name: "おとぎ", shares: 100 },
