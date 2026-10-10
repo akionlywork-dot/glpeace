@@ -986,7 +986,70 @@ html {
   color: var(--main);
 }
 
+.job {
+  margin-bottom: 16px;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
 
+.job summary {
+  padding: 24px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.job summary::-webkit-details-marker {
+  display: none;
+}
+
+.job-name {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--main-dark);
+}
+
+.job-desc {
+  display: block;
+  margin-top: 8px;
+}
+
+.job-more {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 6px 20px;
+  border: 2px solid var(--main);
+  border-radius: 999px;
+  color: var(--main);
+  font-weight: bold;
+}
+
+.job-more::after {
+  content: " ＋";
+}
+
+.job[open] .job-more::after {
+  content: " －";
+}
+
+.job-body {
+  padding: 0 24px 24px;
+  border-top: 1px dashed var(--main);
+  text-align: center;
+}
+
+#contact-form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 16px;
+  box-sizing: border-box;
+  background: var(--white);
+}
 
 /* スマホ用（必ず一番下） */
 @media (max-width: 600px) {
