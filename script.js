@@ -143,3 +143,46 @@ menu.querySelectorAll("a").forEach(function (link) {
     // 動き終わる0.4秒後に、detailsを閉じる
   });
 });
+
+const counters = document.querySelectorAll(".count");
+// .count が付いた数字を全部集める
+
+const countObserver = new IntersectionObserver(function (entries) {
+  // 画面に入ったか見張る係を作る
+  entries.forEach(function (entry) {
+    if (!entry.isIntersecting) return;
+    // 画面に入っていないなら何もしない
+
+    const el = entry.target;
+    // 見えた数字の要素
+    const target = Number(el.dataset.target);
+    // data-target の値を数字として取り出す（198 など）
+    let now = 0;
+    // 今表示している数字。0から始める
+    const step = Math.max(1, Math.ceil(target / 60));
+    // 1回で増やす量。約60回で終わるようにする（最低1）
+
+    const timer = setInterval(function () {
+      // 0.02秒ごとに繰り返す
+      now += step;
+      // 数字を増やす
+      if (now >= target) {
+        // 目標を超えたら
+        now = target;
+        // ちょうど目標の数字にする
+        clearInterval(timer);
+        // 繰り返しを止める
+      }
+      el.textContent = now;
+      // 画面の数字を書き換える
+    }, 20);
+
+    countObserver.unobserve(el);
+    // 一度動かしたら見張りをやめる
+  });
+});
+
+counters.forEach(function (counter) {
+  countObserver.observe(counter);
+  // 集めた数字を1つずつ見張りに登録
+});

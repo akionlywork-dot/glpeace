@@ -888,6 +888,106 @@ html {
   scroll-margin-top: 90px;     /* 固定ヘッダーに隠れないよう90px手前で止める */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--main);
+  color: #fff;
+}
+
+.hero {
+  height: 360px;
+}
+
+.hero-inner {
+  position: relative;
+  text-align: center;
+  color: var(--white);
+}
+
+.hero-copy {
+  margin: 8px 0 20px;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--main-dark);
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hero-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.marquee {
+  overflow: hidden;
+  background: var(--main-dark);
+  color: var(--white);
+  padding: 10px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-move 60s linear infinite;
+}
+
+.marquee-track span {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-weight: bold;
+  letter-spacing: 0.3em;
+}
+
+@keyframes marquee-move {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 40px 16px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 140px;
+  padding: 20px 16px;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.stat-num {
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: var(--main-dark);
+}
+
+.stat-label {
+  margin-top: 4px;
+  color: var(--main);
+}
+
+
+
 /* スマホ用（必ず一番下） */
 @media (max-width: 600px) {
   header {

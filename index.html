@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>株式会社がんばりピース</title>
   <link rel="stylesheet" href="style.css">
+
+  <meta name="description" content="株式会社がんばりピースの公式サイト（架空の会社）です。">
+<link rel="icon" href="images/favicon.png">
+<meta property="og:title" content="株式会社がんばりピース">
+<meta property="og:image" content="images/hero.jpg">
 </head>
 <body>
 
@@ -21,8 +26,6 @@
         <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
         <span>MENU</span>
       </summary>
-      <div class="acc-item open" id="company-info"></div>
-      <div class="acc-item" id="recruit-info"></div>
 
 <nav class="menu-panel" aria-label="サイトメニュー">
   <a href="index.html">トップ</a>
@@ -36,15 +39,41 @@
 
   <main>
     <div class="hero">
-      <h1>株式会社がんばりピース</h1>
-    </div>
+  <div class="hero-inner">
+    <h1>株式会社がんばりピース</h1>
+    <p class="hero-copy">ピースを、もっと。</p>
+    <a href="company.html" class="hero-btn">会社を見る</a>
+  </div>
+</div>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>piece piece ganbari piece piece piece ganbari piece</span>
+    <span> piece piece ganbari piece piece piece ganbari piece</span>
+  </div>
+</div>
 
     <section id="about" class="about">
       <p>がんばりピースは<br>ピースを応援するための<br>架空の会社です。</p>
     </section>
 
+    <section class="stats">
+  <div class="stat">
+    <span class="stat-num"><span class="count" data-target="198">0</span>円</span>
+    <span class="stat-label">資本金(横領前)</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num"><span class="count" data-target="600000">0</span>人</span>
+    <span class="stat-label">社員数</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num"><span class="count" data-target="1">0</span>社</span>
+    <span class="stat-label">ライバル会社</span>
+  </div>
+</section>
+
     <section class="info">
-      <div class="acc-item open">
+      <div class="acc-item open" id="company-info">
         <button class="acc-title">会社情報</button>
         <ul class="acc-panel">
           <li><a href="company.html">会社概要</a></li>
@@ -54,7 +83,7 @@
         </ul>
       </div>
 
-      <div class="acc-item">
+      <div class="acc-item" id="recruit-info">
         <button class="acc-title">採用情報</button>
         <ul class="acc-panel">
           <li><a href="bosyu.html">募集職種</a></li>
