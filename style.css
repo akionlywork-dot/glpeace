@@ -1051,6 +1051,69 @@ html {
   background: var(--white);
 }
 
+.qa {
+  text-align: left;
+}
+
+.qa h4 {
+  margin-top: 20px;
+  color: var(--main-dark);
+}
+
+.qa h4::before {
+  content: "✌ ";
+}
+
+.qa p {
+  margin-top: 6px;
+  line-height: 1.8;
+}
+
+.holder-chart {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+}
+
+.holder-title {
+  margin-bottom: 8px;
+  text-align: center;
+  color: var(--main-dark);
+}
+
+.holder-note {
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.holder-chart {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+}
+
+.chart-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+#company-info, #recruit-info, #ir-info {
+  scroll-margin-top: 80px;
+}
+
 /* スマホ用（必ず一番下） */
 @media (max-width: 600px) {
   header {

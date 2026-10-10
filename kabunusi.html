@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>役員一覧</title>
+  <title>株主一覧</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="sub-page">
@@ -26,25 +26,33 @@
   </header>
 
   <div class="page-title">
-    <h2>役員一覧</h2>
+    <h2>株主一覧</h2>
   </div>
 
   <main class="page">
-    <ul class="officer-list">
-      <li>
-        <span class="role">代表取締役社長</span>
-        <span class="person">かじー</span>
-      </li>
-      <li>
-        <span class="role">暇人開発者</span>
-        <span class="person">あき</span>
-      </li>
-    </ul>
-  </main>
+  <h3 class="holder-title">持株比率</h3>
+<p class="holder-note">株主ごとの持株の割合を、<br>円グラフで表しています。</p>
+  <div class="holder-chart" id="holder-chart"></div>
+  <ul class="officer-list" id="holder-list"></ul>
+
+  <section class="job">
+  <div class="job-body qa">
+    <h4>株主優待</h4>
+    <p>株主の皆さまには、毎年、社長がピースギャグを1回プレゼントします。</p>
+    <h4>配当金について</h4>
+    <p>横領により、今期は未定です</p>
+    <h4>株主総会</h4>
+    <p>日時・場所は非公開です。社長がバックレる可能性があります。</p>
+  </div>
+</section>
+
+</main>
 
   <footer>
     <p>© 2026 株式会社がんばりピース</p>
   </footer>
+
+  <script src="kabunusi.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
