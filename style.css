@@ -1174,3 +1174,30 @@ html {
     padding: 10px 6px;
   }
 }
+
+/* ゲーム */
+.sub-page .page.game-page {
+  max-width: 900px;
+  padding: 16px;
+}
+
+.game-frame {
+  width: 100%;
+  height: 80vh;
+  min-height: 480px;
+  margin-bottom: 20px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-color: #000;
+}
+
+.game-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.game-open {
+  margin-bottom: 0;
+}
